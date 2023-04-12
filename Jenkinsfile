@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Building') {
             steps {
-                dotnet run
+                bat 'echo hello world!'
             }
         }
     }
