@@ -3,7 +3,8 @@ pipeline {
     stages {
         stage('Building') {
             steps {
-                bat 'dotnet run Program.cs'
+                cd C:\Users\Codermine\source\repos\SelTest
+                dotnet run
             }
         }
     }
