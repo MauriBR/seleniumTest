@@ -1,15 +1,26 @@
 ﻿using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium;
-using System.Globalization;
-public class LogInPage
+public class SeleniumAutomation
 {
     private readonly IWebDriver _driver;
-    public LogInPage()
+    public SeleniumAutomation()
     {
         _driver = new FirefoxDriver();
         _driver.Manage().Window.Maximize();
         _driver.Navigate().GoToUrl("https://ultimateqa.com/simple-html-elements-for-automation/");
 
+    }
+    public void SecondPage()
+    {
+        var button = _driver.FindElement(By.Id("button1"));
+        button.Click();
+        Thread.Sleep(2000);
+        
+        var alert = _driver.SwitchTo().Alert();
+        alert.Accept();
+        Thread.Sleep(2000);
+        
+        _driver.Navigate().Back();
     }
     public void NewsLetter()
     {
@@ -57,6 +68,17 @@ public class LogInPage
         Thread.Sleep(1000);
         var signInButton = _driver.FindElement(By.CssSelector("button[class='button button-primary g-recaptcha'][type='submit']"));
         signInButton.Click();
-
+    }
+    
+    public void SignOut()
+    {
+        Thread.Sleep(2000);
+        var dropDown = _driver.FindElement(By.CssSelector("i.fa.fa-caret-down[aria-hidden='true']"));
+        dropDown.Click();
+        Thread.Sleep(2000);
+        var signOut = _driver.FindElement(By.CssSelector("a[href='/users/sign_out']"));
+        signOut.Click();
+        Thread.Sleep(2000);
+        _driver.Quit();
     }
 }
