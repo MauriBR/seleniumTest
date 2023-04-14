@@ -30,7 +30,9 @@ public class SeleniumAutomation
     }
     public void SignIn()
     {
+        ClickLogin();
         FillCredentials();
+        Thread.Sleep(2000);
         ClickSignIn();
     }
     
@@ -49,13 +51,15 @@ public class SeleniumAutomation
         submit.Click();
     }
     
-    private void FillCredentials()
+    public void ClickLogin()
     {
         var loginButton = _driver.FindElement(By.CssSelector("a[class='et_pb_button et_pb_promo_button'][href='https://courses.ultimateqa.com/users/sign_in']"));
         loginButton.Click();
-
         Thread.Sleep(2000);
-
+    }
+    
+    public void FillCredentials()
+    {
         var email = _driver.FindElement(By.Name("user[email]"));
         email.SendKeys("placeholder@test.com");
 
@@ -63,7 +67,7 @@ public class SeleniumAutomation
         password.SendKeys("seleniumTest23!");
     }
 
-    private void ClickSignIn()
+    public void ClickSignIn()
     {
         Thread.Sleep(1000);
         var signInButton = _driver.FindElement(By.CssSelector("button[class='button button-primary g-recaptcha'][type='submit']"));
